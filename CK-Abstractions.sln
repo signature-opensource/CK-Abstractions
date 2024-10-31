@@ -1,0 +1,62 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9DEAD117-3101-4DED-9FCC-8AA28CF4F34C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		Directory.Build.props = Directory.Build.props
+		NuGet.config = NuGet.config
+		README.md = README.md
+		RepositoryInfo.xml = RepositoryInfo.xml
+		Common\SharedKey.snk = Common\SharedKey.snk
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CK.Abstractions", "CK.Abstractions\CK.Abstractions.csproj", "{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{4767B524-1981-4BC7-B835-7D1BE8E92ADF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Debug|x86.Build.0 = Debug|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Release|x86.ActiveCfg = Release|Any CPU
+		{DDC9E5C0-EEE7-40ED-BBCB-25969DC26902}.Release|x86.Build.0 = Release|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Debug|x86.Build.0 = Debug|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|x86.ActiveCfg = Release|Any CPU
+		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B74146F-6755-49A8-B78C-4CB398840390}
+	EndGlobalSection
+EndGlobal
