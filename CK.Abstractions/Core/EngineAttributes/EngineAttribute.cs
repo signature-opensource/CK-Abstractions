@@ -5,12 +5,12 @@ namespace CK.Core;
 /// <summary>
 /// Abstract base class for Engine attributes.
 /// <para>
-/// This attribute and <see cref="EngineAttribute{T}"/> bind the user code to the Engine side through
+/// This attribute and <see cref="ChildEngineAttribute{T}"/> bind the user code to the Engine side through
 /// a simple assembly qualified name that identifies the actual attribute implementation.
 /// The user code side attribute can declare any properties that configures the behavior of its Engine peer.
 /// </para>
 /// <para>
-/// A <see cref="EngineAttribute"/> can be "augmented" by any number of child <see cref="EngineAttribute{T}"/>.
+/// A <see cref="EngineAttribute"/> can be "augmented" by any number of <see cref="ChildEngineAttribute{T}"/>.
 /// Usually, a type or a member is decorated by only one root EngineAttribute but nothing prevents
 /// more than one root EngineAttribute to decorate the same type or member if the <see cref="AttributeUsageAttribute"/>
 /// specifies a true <see cref="AttributeUsageAttribute.AllowMultiple"/>: it is up to the Engine

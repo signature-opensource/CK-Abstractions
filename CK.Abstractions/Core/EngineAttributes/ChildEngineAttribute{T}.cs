@@ -12,10 +12,10 @@ namespace CK.Core;
 /// </para>
 /// </summary>
 /// <typeparam name="T">The <see cref="IEngineAttribute"/> that this attribute extends.</typeparam>
-public abstract class EngineAttribute<T> : EngineAttribute, IEngineAttribute<T> where T : IEngineAttribute
+public abstract class ChildEngineAttribute<T> : EngineAttribute, IChildEngineAttribute<T> where T : IEngineAttribute
 {
     /// <summary>
-    /// Initializes a new <see cref="EngineAttribute{T}"/> that delegates its behaviors to
+    /// Initializes a new <see cref="ChildEngineAttribute{T}"/> that delegates its behaviors to
     /// an Engine implementation.
     /// </summary>
     /// <param name="actualAttributeTypeAssemblyQualifiedName">
@@ -25,7 +25,7 @@ public abstract class EngineAttribute<T> : EngineAttribute, IEngineAttribute<T> 
     /// Example: "Namespace.TypeNameAttributeImpl, SomeEngineAssembly".
     /// </para>
     /// </param>
-    protected EngineAttribute( string actualAttributeTypeAssemblyQualifiedName )
+    protected ChildEngineAttribute( string actualAttributeTypeAssemblyQualifiedName )
         : base( actualAttributeTypeAssemblyQualifiedName )
     {
         ParentEngineAttributeType = typeof( T );

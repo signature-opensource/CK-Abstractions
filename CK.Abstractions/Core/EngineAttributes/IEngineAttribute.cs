@@ -13,7 +13,7 @@ public interface IEngineAttribute
     string ActualAttributeTypeAssemblyQualifiedName { get; }
 
     /// <summary>
-    /// Gets the parent <see cref="IEngineAttribute"/> type if this attribute is a child <see cref="IEngineAttribute{T}"/>.
+    /// Gets the parent <see cref="IEngineAttribute"/> type if this attribute is a <see cref="IChildEngineAttribute{T}"/>.
     /// </summary>
     Type? ParentEngineAttributeType { get; }
 
