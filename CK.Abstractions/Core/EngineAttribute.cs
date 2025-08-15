@@ -23,7 +23,7 @@ namespace CK.Core;
 /// multiplicity.
 /// </para>
 /// </summary>
-public abstract class EngineAttribute : Attribute
+public abstract class EngineAttribute : Attribute, IEngineAttribute
 {
     /// <summary>
     /// Defines the default type targets.
@@ -51,13 +51,11 @@ public abstract class EngineAttribute : Attribute
         ActualAttributeTypeAssemblyQualifiedName = actualAttributeTypeAssemblyQualifiedName;
     }
 
-    /// <summary>
-    /// Gets the Assembly Qualified Name of the object that will replace this attribute during setup.
-    /// </summary>
+    /// <inheritdoc />
     public string ActualAttributeTypeAssemblyQualifiedName { get; }
 
-    /// <summary>
-    /// Gets the parent <see cref="EngineAttribute"/> type if this attribute is a <see cref="EngineAttribute{T}"/>.
-    /// </summary>
+    /// <inheritdoc />
     public Type? ParentEngineAttributeType { get; private protected init; }
+
+    void IEngineAttribute.LocalImplementationOnly() {}
 }
