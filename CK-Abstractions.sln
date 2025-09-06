@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CK.Abstractions", "CK.Abstr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{4767B524-1981-4BC7-B835-7D1BE8E92ADF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.ResourceSpace.Abstractions", "CK.ResourceSpace.Abstractions\CK.ResourceSpace.Abstractions.csproj", "{4C0C4860-789A-B09B-5F38-F0746CA9CE37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,18 @@ Global
 		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|x86.ActiveCfg = Release|Any CPU
 		{4767B524-1981-4BC7-B835-7D1BE8E92ADF}.Release|x86.Build.0 = Release|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Debug|x86.Build.0 = Debug|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Release|x86.ActiveCfg = Release|Any CPU
+		{4C0C4860-789A-B09B-5F38-F0746CA9CE37}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
