@@ -1,0 +1,25 @@
+using System;
+
+namespace CK.Setup;
+
+/// <summary>
+/// Explicitly consider one or more types from a referenced assembly that could have been hidden by <see cref="ExcludePFeatureAttribute"/>
+/// or by a <see cref="ExcludeCKTypeAttribute"/> in referenced assemblies or are in a regular (non PFeature) assembly.
+/// <list type="bullet">
+///     <item>The types to register must be public (<see cref="Type.IsVisible"/>) otherwise it is a setup error.</item>
+///     <item>They can belong to any assembly (excluded or not).</item>
+/// </list>
+/// </summary>
+[AttributeUsage( AttributeTargets.Assembly, AllowMultiple = true )]
+public sealed class IncludeCKTypeAttribute : Attribute
+{
+    /// <summary>
+    /// Initializes a new <see cref="IncludeCKTypeAttribute"/>.
+    /// </summary>
+    /// <param name="type">The first type to expose.</param>
+    /// <param name="otherTypes">Other types to expose.</param>
+    public IncludeCKTypeAttribute( Type type, params Type[] otherTypes )
+    {
+    }
+
+}

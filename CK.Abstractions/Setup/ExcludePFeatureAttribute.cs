@@ -11,7 +11,7 @@ namespace CK.Setup;
 /// </para>
 /// <para>
 /// This allows to hide all the types of a referenced assembly by default and to opt-in exposing some of
-/// their types by using <see cref="RegisterCKTypeAttribute"/>.
+/// their types by using <see cref="IncludeCKTypeAttribute"/>.
 /// </para>
 /// </summary>
 [AttributeUsage( AttributeTargets.Assembly, AllowMultiple = true )]
