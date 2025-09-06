@@ -6,11 +6,11 @@ namespace CK.Setup;
 /// Excludes one or more types of automatic registration.
 /// <para>
 /// Excluding a type, just like excluding an assembly with <see cref="ExcludePFeatureAttribute"/>, is
-/// "weak", it impacts the initial type set that will be considered. An excluded type referenced by a
-/// registered one will eventually be registered.
+/// "weak", it impacts the initial type set that will be considered. Other assemblies, engine configuration
+/// or aspects can always register the types back.
+/// </para>
 /// Exclusion applies "from the leaves": most specialized types must be excluded for a "base" type
 /// to also be excluded.
-/// </para>
 /// </summary>
 [AttributeUsage( AttributeTargets.Assembly, AllowMultiple = false )]
 public class ExcludeCKTypeAttribute : Attribute
