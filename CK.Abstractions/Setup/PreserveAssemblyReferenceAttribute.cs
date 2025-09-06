@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace CK.Core;
+namespace CK.Setup;
 
 /// <summary>
 /// Simple assembly attribute that forces a reference to an assembly to be preserved
