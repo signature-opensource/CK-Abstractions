@@ -18,17 +18,17 @@ public sealed class OptionalRequiresAttribute : Attribute
     /// Initializes a new set of requirements. Each string can be a single package full name
     /// or comma separated multiple package full names. 
     /// </summary>
-    /// <param name="commaSeparatedPackageFullnames">
+    /// <param name="commaSeparatedFullNames">
     /// Each string can be a single package full name or comma separated multiple package full names.
     /// </param>
-    public OptionalRequiresAttribute( params string[] commaSeparatedPackageFullnames )
+    public OptionalRequiresAttribute( params string[] commaSeparatedFullNames )
     {
-        CommaSeparatedPackageFullnames = commaSeparatedPackageFullnames;
+        CommaSeparatedFullNames = commaSeparatedFullNames;
     }
 
     /// <summary>
     /// Gets the set of requirements.
     /// </summary>
-    public string[] CommaSeparatedPackageFullnames { get; }
+    public string[] CommaSeparatedFullNames { get; }
 }
 

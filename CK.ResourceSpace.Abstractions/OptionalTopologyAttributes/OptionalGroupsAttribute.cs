@@ -20,17 +20,17 @@ public sealed class OptionalGroupsAttribute : Attribute
     /// Initializes a new set of <see cref="IResourceGroup"/> that contains the decorated type.
     /// Each string can be a single package full name or comma separated multiple package full names. 
     /// </summary>
-    /// <param name="commaSeparatedPackageFullnames">
+    /// <param name="commaSeparatedFullNames">
     /// Each string can be a single package full name or comma separated multiple package full names.
     /// </param>
-    public OptionalGroupsAttribute( params string[] commaSeparatedPackageFullnames )
+    public OptionalGroupsAttribute( params string[] commaSeparatedFullNames )
     {
-        CommaSeparatedPackageFullnames = commaSeparatedPackageFullnames;
+        CommaSeparatedFullNames = commaSeparatedFullNames;
     }
 
     /// <summary>
     /// Gets the set of <see cref="IResourceGroup"/> full names.
     /// </summary>
-    public string[] CommaSeparatedPackageFullnames { get; }
+    public string[] CommaSeparatedFullNames { get; }
 }
 

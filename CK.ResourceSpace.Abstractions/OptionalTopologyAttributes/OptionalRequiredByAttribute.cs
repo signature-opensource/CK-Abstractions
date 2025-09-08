@@ -18,17 +18,17 @@ public sealed class OptionalRequiredByAttribute : Attribute
     /// Initializes a new set of optional reverse requirements. Each string can be a single package full name
     /// or comma separated multiple package full names. 
     /// </summary>
-    /// <param name="commaSeparatedPackageFullnames">
+    /// <param name="commaSeparatedFullNames">
     /// Each string can be a single package full name or comma separated multiple package full names.
     /// </param>
-    public OptionalRequiredByAttribute( params string[] commaSeparatedPackageFullnames )
+    public OptionalRequiredByAttribute( params string[] commaSeparatedFullNames )
     {
-        CommaSeparatedPackageFullnames = commaSeparatedPackageFullnames;
+        CommaSeparatedFullNames = commaSeparatedFullNames;
     }
 
     /// <summary>
     /// Gets the set of optional reverse requirements.
     /// </summary>
-    public string[] CommaSeparatedPackageFullnames { get; }
+    public string[] CommaSeparatedFullNames { get; }
 }
 

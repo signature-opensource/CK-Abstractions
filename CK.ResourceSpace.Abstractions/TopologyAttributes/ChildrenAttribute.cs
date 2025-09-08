@@ -19,17 +19,17 @@ public sealed class ChildrenAttribute : Attribute
     /// Initializes a new set of package full names contained by the decorated type.
     /// Each string can be a single package full name or comma separated multiple package full names. 
     /// </summary>
-    /// <param name="commaSeparatedPackageFullnames">
+    /// <param name="commaSeparatedFullNames">
     /// Each string can be a single package full name or comma separated multiple package full names.
     /// </param>
-    public ChildrenAttribute( params string[] commaSeparatedPackageFullnames )
+    public ChildrenAttribute( params string[] commaSeparatedFullNames )
     {
-        CommaSeparatedPackageFullnames = commaSeparatedPackageFullnames;
+        CommaSeparatedFullNames = commaSeparatedFullNames;
     }
 
     /// <summary>
     /// Gets the set of <see cref="IResourceGroup"/> full names.
     /// </summary>
-    public string[] CommaSeparatedPackageFullnames { get; }
+    public string[] CommaSeparatedFullNames { get; }
 }
 
