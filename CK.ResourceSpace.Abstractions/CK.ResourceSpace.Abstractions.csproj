@@ -3,6 +3,6 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.EmbeddedResources.Abstractions" Version="1.0.0-a00-00-0013-develop" />
+    <PackageReference Include="CK.EmbeddedResources.Abstractions" Version="1.0.0-a00-00-0014-develop" />
   </ItemGroup>
 </Project>
