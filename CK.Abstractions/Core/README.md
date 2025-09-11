@@ -27,6 +27,3 @@ After many years of experimentation we never met a really useful case for this "
 Exclusion is rather exceptional and used in advanced scenario: explictly excluding types bottom up
 in the hierarchy has never been an issue.
 
-## PreserveAssemblyReferenceAttribute
-
-This is a simple helper that avoids a reference to an assembly to be trimmed out by the compiler/linker.

@@ -1,6 +1,6 @@
 using System;
 
-namespace CK.Setup;
+namespace CK.Core;
 
 /// <summary>
 /// Subset of the Automatic DI types categorization that can be applied to external classes or interfaces.
