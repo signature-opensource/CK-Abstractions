@@ -14,7 +14,7 @@ public class BasicGenerationTests
 
             namespace TestApp;
 
-            public interface IUserInfo : IPoco
+            public partial interface IUserInfo : IPoco
             {
                 string Name { get; set; }
                 int Age { get; set; }
@@ -24,7 +24,6 @@ public class BasicGenerationTests
         var (diagnostics, generated) = GeneratorTestHelper.RunGenerator( source );
 
         diagnostics.ShouldBeEmpty();
-        // Find the generated source (not the IImmutablePoco stub)
         var immutableSource = generated.FirstOrDefault( s => s.Contains( "IImmutableUserInfo" ) );
         immutableSource.ShouldNotBeNull( "Should generate IImmutableUserInfo" );
         immutableSource.ShouldContain( "namespace TestApp" );
@@ -33,6 +32,11 @@ public class BasicGenerationTests
         immutableSource.ShouldContain( "int Age { get; }" );
         // Must NOT contain setters
         immutableSource.ShouldNotContain( "set;" );
+        immutableSource.ShouldContain( "new IUserInfo ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IUserInfo" ) );
+        partialSource.ShouldNotBeNull( "Should generate IUserInfo.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableUserInfo ToImmutable();" );
     }
 
     [Test]
@@ -61,7 +65,7 @@ public class BasicGenerationTests
 
             namespace TestApp;
 
-            public interface IEmpty : IPoco
+            public partial interface IEmpty : IPoco
             {
             }
             """;
@@ -71,5 +75,10 @@ public class BasicGenerationTests
         var immutableSource = generated.FirstOrDefault( s => s.Contains( "IImmutableEmpty" ) );
         immutableSource.ShouldNotBeNull( "Should generate IImmutableEmpty" );
         immutableSource.ShouldContain( "public interface IImmutableEmpty : CK.Core.IImmutablePoco" );
+        immutableSource.ShouldContain( "new IEmpty ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IEmpty" ) );
+        partialSource.ShouldNotBeNull( "Should generate IEmpty.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableEmpty ToImmutable();" );
     }
 }

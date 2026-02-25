@@ -14,7 +14,7 @@ public class RefAndTupleMappingTests
 
             namespace TestApp;
 
-            public interface IWithRefTuple : IPoco
+            public partial interface IWithRefTuple : IPoco
             {
                 ref (int Id, string Label) Tag { get; }
             }
@@ -26,6 +26,11 @@ public class RefAndTupleMappingTests
         immutableSource.ShouldNotBeNull();
         immutableSource.ShouldContain( "(int Id, string Label) Tag { get; }" );
         immutableSource.ShouldNotContain( "ref " );
+        immutableSource.ShouldContain( "new IWithRefTuple ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IWithRefTuple" ) );
+        partialSource.ShouldNotBeNull( "Should generate IWithRefTuple.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableWithRefTuple ToImmutable();" );
     }
 
     [Test]
@@ -36,12 +41,12 @@ public class RefAndTupleMappingTests
 
             namespace TestApp;
 
-            public interface IItem : IPoco
+            public partial interface IItem : IPoco
             {
                 string Name { get; set; }
             }
 
-            public interface IWithPocoTuple : IPoco
+            public partial interface IWithPocoTuple : IPoco
             {
                 ref (string Label, IItem Item) Tagged { get; }
             }
@@ -53,5 +58,18 @@ public class RefAndTupleMappingTests
         immutableSource.ShouldNotBeNull();
         immutableSource.ShouldContain( "(string Label, TestApp.IImmutableItem Item) Tagged { get; }" );
         immutableSource.ShouldNotContain( "ref " );
+        immutableSource.ShouldContain( "new IWithPocoTuple ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IWithPocoTuple" ) );
+        partialSource.ShouldNotBeNull( "Should generate IWithPocoTuple.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableWithPocoTuple ToImmutable();" );
+
+        var itemSource = generated.FirstOrDefault( s => s.Contains( "interface IImmutableItem" ) );
+        itemSource.ShouldNotBeNull();
+        itemSource.ShouldContain( "new IItem ToMutable();" );
+
+        var itemPartial = generated.FirstOrDefault( s => s.Contains( "partial interface IItem" ) );
+        itemPartial.ShouldNotBeNull( "Should generate IItem.ToImmutable partial" );
+        itemPartial.ShouldContain( "new IImmutableItem ToImmutable();" );
     }
 }

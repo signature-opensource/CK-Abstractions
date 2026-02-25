@@ -14,12 +14,12 @@ public class InheritanceMappingTests
 
             namespace TestApp;
 
-            public interface IAnimal : IPoco
+            public partial interface IAnimal : IPoco
             {
                 string Name { get; set; }
             }
 
-            public interface IDog : IAnimal
+            public partial interface IDog : IAnimal
             {
                 string Breed { get; set; }
             }
@@ -30,6 +30,11 @@ public class InheritanceMappingTests
         var animalSource = generated.FirstOrDefault( s => s.Contains( "interface IImmutableAnimal" ) );
         animalSource.ShouldNotBeNull();
         animalSource.ShouldContain( "public interface IImmutableAnimal : CK.Core.IImmutablePoco" );
+        animalSource.ShouldContain( "new IAnimal ToMutable();" );
+
+        var animalPartial = generated.FirstOrDefault( s => s.Contains( "partial interface IAnimal" ) );
+        animalPartial.ShouldNotBeNull( "Should generate IAnimal.ToImmutable partial" );
+        animalPartial.ShouldContain( "new IImmutableAnimal ToImmutable();" );
 
         var dogSource = generated.FirstOrDefault( s => s.Contains( "interface IImmutableDog" ) );
         dogSource.ShouldNotBeNull();
@@ -37,6 +42,11 @@ public class InheritanceMappingTests
         dogSource.ShouldContain( "string Breed { get; }" );
         // Must NOT redeclare inherited properties
         dogSource.ShouldNotContain( "string Name { get; }" );
+        dogSource.ShouldContain( "new IDog ToMutable();" );
+
+        var dogPartial = generated.FirstOrDefault( s => s.Contains( "partial interface IDog" ) );
+        dogPartial.ShouldNotBeNull( "Should generate IDog.ToImmutable partial" );
+        dogPartial.ShouldContain( "new IImmutableDog ToImmutable();" );
     }
 
     [Test]
@@ -47,23 +57,39 @@ public class InheritanceMappingTests
 
             namespace TestApp;
 
-            public interface IAuthored : IPoco
+            public partial interface IAuthored : IPoco
             {
                 string Author { get; set; }
             }
 
-            public interface IDated : IPoco
+            public partial interface IDated : IPoco
             {
                 DateTime Date { get; set; }
             }
 
-            public interface IDocument : IAuthored, IDated
+            public partial interface IDocument : IAuthored, IDated
             {
                 string Title { get; set; }
             }
             """;
 
         var (diagnostics, generated) = GeneratorTestHelper.RunGenerator( source );
+
+        var authoredSource = generated.FirstOrDefault( s => s.Contains( "interface IImmutableAuthored" ) );
+        authoredSource.ShouldNotBeNull();
+        authoredSource.ShouldContain( "new IAuthored ToMutable();" );
+
+        var authoredPartial = generated.FirstOrDefault( s => s.Contains( "partial interface IAuthored" ) );
+        authoredPartial.ShouldNotBeNull( "Should generate IAuthored.ToImmutable partial" );
+        authoredPartial.ShouldContain( "new IImmutableAuthored ToImmutable();" );
+
+        var datedSource = generated.FirstOrDefault( s => s.Contains( "interface IImmutableDated" ) );
+        datedSource.ShouldNotBeNull();
+        datedSource.ShouldContain( "new IDated ToMutable();" );
+
+        var datedPartial = generated.FirstOrDefault( s => s.Contains( "partial interface IDated" ) );
+        datedPartial.ShouldNotBeNull( "Should generate IDated.ToImmutable partial" );
+        datedPartial.ShouldContain( "new IImmutableDated ToImmutable();" );
 
         var docSource = generated.FirstOrDefault( s => s.Contains( "interface IImmutableDocument" ) );
         docSource.ShouldNotBeNull();
@@ -72,5 +98,10 @@ public class InheritanceMappingTests
         // Must NOT redeclare inherited properties
         docSource.ShouldNotContain( "string Author { get; }" );
         docSource.ShouldNotContain( "DateTime Date { get; }" );
+        docSource.ShouldContain( "new IDocument ToMutable();" );
+
+        var docPartial = generated.FirstOrDefault( s => s.Contains( "partial interface IDocument" ) );
+        docPartial.ShouldNotBeNull( "Should generate IDocument.ToImmutable partial" );
+        docPartial.ShouldContain( "new IImmutableDocument ToImmutable();" );
     }
 }

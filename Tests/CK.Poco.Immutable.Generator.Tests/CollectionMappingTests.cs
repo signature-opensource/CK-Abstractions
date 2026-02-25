@@ -15,7 +15,7 @@ public class CollectionMappingTests
 
             namespace TestApp;
 
-            public interface IWithList : IPoco
+            public partial interface IWithList : IPoco
             {
                 List<string> Names { get; set; }
             }
@@ -26,6 +26,11 @@ public class CollectionMappingTests
         var immutableSource = generated.FirstOrDefault( s => s.Contains( "IImmutableWithList" ) );
         immutableSource.ShouldNotBeNull();
         immutableSource.ShouldContain( "System.Collections.Generic.IReadOnlyList<string> Names { get; }" );
+        immutableSource.ShouldContain( "new IWithList ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IWithList" ) );
+        partialSource.ShouldNotBeNull( "Should generate IWithList.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableWithList ToImmutable();" );
     }
 
     [Test]
@@ -36,7 +41,7 @@ public class CollectionMappingTests
 
             namespace TestApp;
 
-            public interface IWithArray : IPoco
+            public partial interface IWithArray : IPoco
             {
                 int[] Values { get; set; }
             }
@@ -47,6 +52,11 @@ public class CollectionMappingTests
         var immutableSource = generated.FirstOrDefault( s => s.Contains( "IImmutableWithArray" ) );
         immutableSource.ShouldNotBeNull();
         immutableSource.ShouldContain( "System.Collections.Generic.IReadOnlyList<int> Values { get; }" );
+        immutableSource.ShouldContain( "new IWithArray ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IWithArray" ) );
+        partialSource.ShouldNotBeNull( "Should generate IWithArray.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableWithArray ToImmutable();" );
     }
 
     [Test]
@@ -58,7 +68,7 @@ public class CollectionMappingTests
 
             namespace TestApp;
 
-            public interface IWithDict : IPoco
+            public partial interface IWithDict : IPoco
             {
                 Dictionary<string, int> Scores { get; set; }
             }
@@ -69,5 +79,10 @@ public class CollectionMappingTests
         var immutableSource = generated.FirstOrDefault( s => s.Contains( "IImmutableWithDict" ) );
         immutableSource.ShouldNotBeNull();
         immutableSource.ShouldContain( "System.Collections.Generic.IReadOnlyDictionary<string, int> Scores { get; }" );
+        immutableSource.ShouldContain( "new IWithDict ToMutable();" );
+
+        var partialSource = generated.FirstOrDefault( s => s.Contains( "partial interface IWithDict" ) );
+        partialSource.ShouldNotBeNull( "Should generate IWithDict.ToImmutable partial" );
+        partialSource.ShouldContain( "new IImmutableWithDict ToImmutable();" );
     }
 }

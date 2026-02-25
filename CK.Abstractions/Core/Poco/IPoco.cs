@@ -7,4 +7,5 @@ namespace CK.Core;
 /// </summary>
 public interface IPoco
 {
+    IImmutablePoco ToImmutable();
 }
