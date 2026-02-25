@@ -5,4 +5,9 @@
   <ItemGroup>
     <ProjectReference Include="..\CK.ResourceSpace.Abstractions\CK.ResourceSpace.Abstractions.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CK.Poco.Immutable.Generator\CK.Poco.Immutable.Generator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
 </Project>
