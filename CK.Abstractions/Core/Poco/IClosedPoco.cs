@@ -14,6 +14,6 @@ namespace CK.Core;
 /// </para>
 /// </summary>
 [CKTypeDefiner]
-public interface IClosedPoco : IPoco
+public partial interface IClosedPoco : IPoco
 {
 }
