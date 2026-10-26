@@ -6,7 +6,7 @@ engine reading them. The exceptions are small and worth knowing: `ConfigurableAu
 `[Flags]` enum, `IAmbientServiceDefaultProvider<T>` declares a real `Default` member, and
 `EngineAttribute` and `PreserveAssemblyReferenceAttribute` carry state and computed properties.
 
-This is a very high-level overview. To grasp the whole picture, take a deep breadth: there's a lot to
+This is a very high-level overview. To grasp the whole picture, take a deep breath: there's a lot to
 process under the tip of the iceberg.
 
 ## Real Object
@@ -63,8 +63,7 @@ The [Poco attributes](Core/Poco/Attributes) work at two levels. `[PrimaryPoco]`,
 `[NotSerializable]` restrict what may be done with a **type** - an IPoco interface, but also a record
 struct or an enum. And `[NullInvalid]` and `[EmptyInvalid]` constrain a **property**'s value.
 
-`[SealedPoco]` and `[VirtualPoco]` are declared but both carry the same remark: *"As of September 2025,
-this is not yet supported."*
+`[SealedPoco]` and `[VirtualPoco]` are declared but not yet supported.
 
 ## Automatic DI
 

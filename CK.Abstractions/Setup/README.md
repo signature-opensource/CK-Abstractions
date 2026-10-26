@@ -1,6 +1,6 @@
 # Assembly level attributes
 
-This set attributes are in CK.Setup namespace and apply to assemblies: they should be in
+This set of attributes are in CK.Setup namespace and apply to assemblies: they should be in
 the conventional `AssemblyInfo.cs` file.
 
 ## SkippedAssemblyAttribute
@@ -10,12 +10,12 @@ By default "Microsoft.*" and "System.*" assemblies are skipped. This is primaril
 only assemblies that are not skipped are analyzed, first for their assembly level attributes, and
 when they are a PFeature, their types are collected.
 
-## PFeature, PFeatureDefiner Engine and RequiredEngine 
+## PFeature, PFeatureDefiner Engine and RequiredEngine
 A CKomposable assembly is either a PFeature or an Engine.
 - A PFeature contains the regular code and will be deployed.
 - An Engine contains the code that can generate code, documentation, etc. It is not deployed.
 
-An assembly decorated with a [[IsPFeature]([IsPFeatureAttribute.cs)] adds the Types it contains
+An assembly decorated with a [[IsPFeature](IsPFeatureAttribute.cs)] adds the Types it contains
 to the CKomposable engine and can also declare one or more required engines thanks
 to [[RequiredEngine](RequiredEngineAttribute.cs)].
 
@@ -23,10 +23,10 @@ Engine assemblies must be decorated with [[IsEngine](IsEngineAttribute.cs)]. An 
 requires other engines - this can be used to _hide_ the dependency to an engine.
 
 The [[IsPFeatureDefiner](IsPFeatureDefinerAttribute.cs)] is used by the most abstract assemblies:
-they define attributes and abstract types (typically interfaces) but no direclty usable, final, types.
+they define attributes and abstract types (typically interfaces) but no directly usable, final, types.
 
-The [[IsPFeature]([IsPFeatureAttribute.cs)] is often not required: an assembly that recursively depends
-on a PFeature or PFeatureDefiner is a PFeature assembly. Similarily, an assembly that recursively
+The [[IsPFeature](IsPFeatureAttribute.cs)] is often not required: an assembly that recursively depends
+on a PFeature or PFeatureDefiner is a PFeature assembly. Similarly, an assembly that recursively
 depends on an Engine is automatically an Engine assembly.
 
 ## RemovePFeature, RemoveType and AddType
@@ -37,7 +37,7 @@ can be used to remove one or more specific types.
 Types that have been removed by a referencing assembly (with `[RemoveType]` or `[RemovePFeature]`) can be added back
 by a higher level referencing assembly thanks to [[AddType](AddTypeAttribute.cs)]. The `[AddType]` attribute
 can also be used to configure a type for the Automatic Dependency Injection by specifying a
-service [`kind`](../Core/ConfigurableAutoServiceKind.cs) for a type.
+service [`kind`](../Core/AutoDI/ConfigurableAutoServiceKind.cs) for a type.
 
 ## PreserveAssemblyReferenceAttribute
 
