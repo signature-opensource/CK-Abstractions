@@ -12,6 +12,9 @@ namespace CK.Core;
 /// This attribute cancels the implicit unicity of the mapping but doesn't impact the lifetime: the <see cref="IEnumerable{T}"/>
 /// will be a singleton if all the implementations are singletons otherwise it will be a scoped service.
 /// </para>
+/// <para>
+/// The engine currently supports this attribute only on interfaces: on a class, it is a setup error.
+/// </para>
 /// </summary>
 [AttributeUsage( AttributeTargets.Interface|AttributeTargets.Class, AllowMultiple = false, Inherited = false )]
 public sealed class IsMultipleAttribute : Attribute

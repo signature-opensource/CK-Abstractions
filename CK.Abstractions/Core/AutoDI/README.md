@@ -156,7 +156,8 @@ assembly attribute. It applies only to Automatic Services: Real Objects and Poco
 ## IsMultipleAttribute
 Marks an interface so that all its mappings to concrete classes must be automatically
 registered and made available as a `IEnumerable<T>`, regardless of any existing registrations.
-The engine honors it only on interfaces.
+The engine currently supports it only on interfaces: on a class, it is a setup error
+("a class cannot be marked as a Multiple service").
 
 A "Multiple" interface is not compatible with IRealObject but can support any other auto service
 marker like IScopedAutoService.
