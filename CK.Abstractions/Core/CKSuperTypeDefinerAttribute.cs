@@ -4,7 +4,7 @@ namespace CK.Core;
 
 /// <summary>
 /// Attribute that marks a type as being a "Definer of Definer". When <see cref="CKTypeDefinerAttribute"/> is the "father"
-/// of the actual CK type (<see cref="IRealObject"/>, IPoco (defined in CK.StObj.Model) or <see cref="IAutoService"/>), this
+/// of the actual CK type (<see cref="IRealObject"/>, <see cref="IPoco"/> or <see cref="IAutoService"/>), this
 /// acts as a "grand father".
 /// <para>
 /// This attribute, just like <see cref="IRealObject"/>, <see cref="IAutoService"/>, <see cref="IScopedAutoService"/>,

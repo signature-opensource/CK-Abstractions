@@ -8,9 +8,9 @@ namespace CK.Core;
 /// </para>
 /// </summary>
 /// <typeparam name="T">
-/// The ambient service type. This is not not constrained to <see cref="IAmbientAutoService"/>
-/// because <see cref="ScopedContainerConfiguredServiceAttribute"/> can also be used to declare
-/// an ambient service.
+/// The ambient service type. This is not constrained to <see cref="IAmbientAutoService"/>
+/// because an external type (that cannot be decorated) can also be declared as an ambient service
+/// with <see cref="ConfigurableAutoServiceKind.IsAmbientService"/>.
 /// </typeparam>
 public interface IAmbientServiceDefaultProvider<out T> : ISingletonAutoService where T : class
 {

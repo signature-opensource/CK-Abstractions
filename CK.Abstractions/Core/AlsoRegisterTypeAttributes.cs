@@ -109,7 +109,8 @@ public sealed class AlsoRegisterTypeAttribute<T1, T2, T3, T4, T5, T6, T7> : Attr
 /// <typeparam name="T4">The fourth type that must also be considered.</typeparam>
 /// <typeparam name="T5">The fifth type that must also be considered.</typeparam>
 /// <typeparam name="T6">The sixth type that must also be considered.</typeparam>
-/// <typeparam name="T8">The heighth type that must also be considered.</typeparam>
+/// <typeparam name="T7">The seventh type that must also be considered.</typeparam>
+/// <typeparam name="T8">The eighth type that must also be considered.</typeparam>
 [AttributeUsage( AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum,
                  AllowMultiple = true,
                  Inherited = false )]

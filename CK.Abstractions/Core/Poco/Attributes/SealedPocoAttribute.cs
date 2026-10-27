@@ -7,7 +7,7 @@ namespace CK.Core;
 /// but  cannot have any <see cref="SecondaryPocoAttribute"/>. It is not extensible.
 /// </summary>
 /// <remarks>
-/// As of September 2025, this is not yet supported.
+/// This is not yet supported.
 /// </remarks>
 [AttributeUsage( AttributeTargets.Interface, AllowMultiple = false, Inherited = false )]
 public sealed class SealedPocoAttribute : Attribute

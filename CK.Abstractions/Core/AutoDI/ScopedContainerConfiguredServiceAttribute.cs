@@ -6,9 +6,8 @@ namespace CK.Core;
 /// States that the decorated class or interface is a scoped service that is registered specifically
 /// by Dependency Injection container.
 /// <para>
-/// This optionally allow to define the class or interface to be an ambient service. It is simpler to use
-/// the <see cref="IAmbientAutoService"/> interface marker: this defines an auto service that automatically
-/// handles specialization.
+/// This attribute cannot declare an ambient service: use the <see cref="IAmbientAutoService"/> interface marker
+/// (or <see cref="ConfigurableAutoServiceKind.IsAmbientService"/> for an external type that cannot be decorated).
 /// </para>
 /// </summary>
 [AttributeUsage( AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true, Inherited = false )]
@@ -22,9 +21,9 @@ public sealed class ScopedContainerConfiguredServiceAttribute : Attribute
     }
 
     /// <summary>
-    /// Initializes a new <see cref="ScopedContainerConfiguredServiceAttribute"/>.
+    /// Obsolete and unsupported: this attribute cannot declare an ambient service.
     /// </summary>
-    /// <param name="isAmbientService">See <see cref="IsAmbientService"/>.</param>
+    /// <param name="isAmbientService">Unused.</param>
     [Obsolete( "Use ExternalTypes registration instead.", error: true )]
     public ScopedContainerConfiguredServiceAttribute( bool isAmbientService = false )
     {

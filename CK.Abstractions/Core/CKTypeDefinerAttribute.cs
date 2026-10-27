@@ -3,7 +3,7 @@ using System;
 namespace CK.Core;
 
 /// <summary>
-/// Attribute that marks a type as being a "Definer" of a <see cref="IRealObject"/>, IPoco (defined in CK.StObj.Model) or <see cref="IAutoService"/>. 
+/// Attribute that marks a type as being a "Definer" of a <see cref="IRealObject"/>, <see cref="IPoco"/> or <see cref="IAutoService"/>. 
 /// This defines the decorated object as a "base type" of the CK type: it is not itself a IAutoService, IPoco or IRealObject type but
 /// its specializations are (unless they also are decorated with this attribute).
 /// This is a little bit like an 'abstract' type regarding Auto Services, Poco or Real Objects.
