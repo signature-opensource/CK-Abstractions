@@ -3,6 +3,6 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.EmbeddedResources.Abstractions" Version="5.0.0-0.cris-auth.0.ci.7" />
+    <PackageReference Include="CK.EmbeddedResources.Abstractions" Version="5.0.0-0.cris-auth" />
   </ItemGroup>
 </Project>
