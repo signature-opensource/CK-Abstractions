@@ -13,10 +13,15 @@ namespace CK.Core;
 /// will be a singleton if all the implementations are singletons otherwise it will be a scoped service.
 /// </para>
 /// <para>
-/// The engine currently supports this attribute only on interfaces: on a class, it is a setup error.
+/// The Automatic DI engine currently supports this attribute only on interfaces: on a class, it is a setup error.
+/// </para>
+/// <para>
+/// This is also the <see cref="IMultipleMappingAttribute"/> of the type system: any engine that handles mappings (like the
+/// resource space) supports it on interfaces and abstract classes. There, the mapping is automatic but the membership
+/// is not: the mapped implementations are the ones the engine selects.
 /// </para>
 /// </summary>
 [AttributeUsage( AttributeTargets.Interface|AttributeTargets.Class, AllowMultiple = false, Inherited = false )]
-public sealed class IsMultipleAttribute : Attribute
+public sealed class IsMultipleAttribute : Attribute, IMultipleMappingAttribute
 {
 }

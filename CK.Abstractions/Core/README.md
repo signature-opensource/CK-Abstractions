@@ -26,6 +26,23 @@ definition propagates its exclusion to its closed generic types (that is also an
 Exclusion is rather exceptional and used in advanced scenario: types are excluded explicitly, bottom up
 in the hierarchy.
 
+## Mappings: ISingleMappingAttribute, IMultipleMappingAttribute and INotMappedAttribute
+These [Mapping](Mapping) contracts are implemented by attributes defined elsewhere. They describe how abstractions
+(interfaces and abstract classes) are mapped to their implementations, for any engine that handles mappings:
+
+- An [`ISingleMappingAttribute`](Mapping/ISingleMappingAttribute.cs) makes the decorated abstraction a single one:
+  at most one implementation is mapped to it.
+- An [`IMultipleMappingAttribute`](Mapping/IMultipleMappingAttribute.cs) makes it a multiple one: all its
+  implementations are mapped to it. [`[IsMultiple]`](AutoDI/IsMultipleAttribute.cs) implements it.
+- An [`INotMappedAttribute`](Mapping/INotMappedAttribute.cs) revokes the mappings of the decorated type only:
+  it is not an abstraction to map to, and not an implementation mapped to its abstractions.
+
+The cardinality is inherited by the specializations: a single abstraction can specialize a multiple one, the reverse
+is an error. The revocation is never inherited: the specializations of a not mapped type are mapped.
+
+The mapping is automatic, the membership is not: an engine maps the implementations it selects, it never selects a
+type because it implements an abstraction.
+
 ## AlsoRegisterTypeAttribute&lt;T&gt;
 [[AlsoRegisterType&lt;T&gt;](AlsoRegisterTypeAttributes.cs)] enables any selected type to indicate that one or
 more other types must also be considered. It exists with 1 to 8 generic parameters

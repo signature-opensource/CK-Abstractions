@@ -80,7 +80,7 @@ The full contract set is documented in [Core/AutoDI](Core/AutoDI/README.md).
 
 | Folder | Applies to | Attributes |
 |--------|-----------|------------|
-| [Core](Core/README.md) | types, in the `CK.Core` namespace | `[CKTypeDefiner]`, `[CKTypeSuperDefiner]`, `[ExcludedCKType]`, `[AlsoRegisterType<T>]` |
+| [Core](Core/README.md) | types, in the `CK.Core` namespace | `[CKTypeDefiner]`, `[CKTypeSuperDefiner]`, `[ExcludedCKType]`, `[AlsoRegisterType<T>]`, the mapping contracts (`ISingleMappingAttribute`, `IMultipleMappingAttribute`, `INotMappedAttribute`) |
 | [Core/AutoDI](Core/AutoDI/README.md) | the DI contracts and their attributes | `[IsMultiple]`, `[ReplaceAutoService]`, `[ScopedService]`, `[SingletonService]`, … |
 | [Setup](Setup/README.md) | **assemblies**, in the `CK.Setup` namespace, from `AssemblyInfo.cs` | `[IsPFeature]`, `[IsPFeatureDefiner]`, `[IsEngine]`, `[RequiredEngine]`, `[SkippedAssembly]`, `[RemovePFeature]`, `[RemoveType]`, `[AddType]`, `[PreserveAssemblyReference]` |
 

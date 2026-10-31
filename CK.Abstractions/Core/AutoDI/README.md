@@ -168,6 +168,9 @@ it will be a scoped service.
 
 > IPoco interfaces cannot use the `[IsMultiple]` attribute, instead `[CKTypeDefiner]` must be used.
 
+`[IsMultiple]` is also the `IMultipleMappingAttribute` of the type system (see [the mapping contracts](../README.md#mappings-isinglemappingattribute-imultiplemappingattribute-and-inotmappedattribute)):
+an engine that handles mappings, like the resource space, supports it on interfaces and abstract classes.
+
 ## ReplaceAutoServiceAttribute
 
 Optional attribute for `IAutoService` **implementation** that
