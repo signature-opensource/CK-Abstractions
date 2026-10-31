@@ -4,7 +4,7 @@ namespace CK.Core;
 
 /// <summary>
 /// Decorates a <see cref="IResourceGroup"/> or <see cref="IResourcePackage"/> with
-/// any number of reverse dependencies thar are package full names separated by commas
+/// any number of reverse dependencies that are package full names separated by commas
 /// or as independent strings.
 /// <para>
 /// The typed attributes (<see cref="RequiredByAttribute{T}"/>, ..., <see cref="RequiredByAttribute{T1, T2, T3, T4, T5, T6}"/>)

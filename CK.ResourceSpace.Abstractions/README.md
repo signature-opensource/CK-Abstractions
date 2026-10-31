@@ -89,6 +89,35 @@ is here for attributes defined elsewhere, and its comment states the rules an im
 - *"There is no such thing as an 'optional abstraction', an abstraction is always available unless it has
   no registered 'implementation'."*
 
+## Topology declared by another attribute
+
+The attributes above are sealed and say one thing each. An attribute defined elsewhere that carries types
+(like a component that must appear under a target component) can declare the same relations by implementing
+[`IResourceGroupTopologyAttribute`](IResourceGroupTopologyAttribute.cs). Like `IOptionalResourceGroupAttribute`,
+**nothing in this package implements it**.
+
+```csharp
+public interface IResourceGroupTopologyAttribute
+{
+    ReadOnlySpan<Type> Requires => [];
+    ReadOnlySpan<Type> OptionalRequires => [];
+    ReadOnlySpan<Type> RequiredBy => [];
+    ReadOnlySpan<Type> OptionalRequiredBy => [];
+    ReadOnlySpan<Type> Children => [];
+    ReadOnlySpan<Type> OptionalChildren => [];
+    ReadOnlySpan<Type> Groups => [];
+    ReadOnlySpan<Type> OptionalGroups => [];
+    Type? Package => null;
+}
+```
+
+Each member is handled exactly like the generic attribute of the same name. Every member has an empty default:
+an attribute only declares the relations it carries. Every type must be a `IResourceGroup`, and at most one
+package can be declared for a type, whether by `[Package]`, `[Package<T>]` or any of these attributes.
+
+The relations are spans: the attribute holds them (typically in a `Type[]` field), it doesn't compute them
+on each read.
+
 ## Requires.
 
 - `CK.EmbeddedResources.Abstractions`, which defines the `IEmbeddedResourceTypeAttribute` that
