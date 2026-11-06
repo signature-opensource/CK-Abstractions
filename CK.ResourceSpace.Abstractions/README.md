@@ -84,7 +84,7 @@ is here for attributes defined elsewhere, and its comment states the rules an im
 
 - *"Such opt-in groups or packages must be explicitly registered as non-optional or required by another
   registered component, otherwise they are ignored."*
-- *"There should usually be at most one such attribute that decorate a Type but if there are mutiple
+- *"There should usually be at most one such attribute that decorates a Type but if there are multiple
   ones, all of them must have a true `IsOptional` for the package to be considered optional by default."*
 - *"There is no such thing as an 'optional abstraction', an abstraction is always available unless it has
   no registered 'implementation'."*
