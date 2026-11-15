@@ -89,6 +89,29 @@ is here for attributes defined elsewhere, and its comment states the rules an im
 - *"There is no such thing as an 'optional abstraction', an abstraction is always available unless it has
   no registered 'implementation'."*
 
+## Feature names
+
+[`INamedFeatureAttribute`](INamedFeatureAttribute.cs) gives a package a feature name: the name that activates or
+deactivates it in a type set (the roots and the exclusions of the set, the "AllowFeatures" and "DisallowFeatures" of a
+party). **It is not an alias of the type:** a feature name is never a reference (no relation names it), the engine only
+resolves it while it computes a type set. **Nothing in this package implements it.**
+
+```csharp
+public interface INamedFeatureAttribute
+{
+    string? Name { get; }
+    string? TypeNameSuffix => null;
+    bool IsMultiple => false;
+}
+```
+
+- `Name` is explicit; `TypeNameSuffix` derives the name from the decorated type (an attribute inherited from a base
+  class names its specializations: "FeatureDriver" makes the `HttpEndpointFeatureDriver` the "HttpEndpoint" feature).
+  Exactly one of them is not null.
+- A name is borne by one package, unless all the packages that bear it are `IsMultiple`: the name is then a set of
+  packages (the sides of a feature), that agree on their optionality.
+- Only a package (a concrete `IResourceGroup`) can have a feature name, and at most one.
+
 ## Topology declared by another attribute
 
 The attributes above are sealed and say one thing each. An attribute defined elsewhere that carries types
