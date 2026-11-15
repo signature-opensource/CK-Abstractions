@@ -27,11 +27,12 @@ Exclusion is rather exceptional and used in advanced scenario: types are exclude
 in the hierarchy.
 
 ## Mappings: ISingleMappingAttribute, IMultipleMappingAttribute and INotMappedAttribute
-These [Mapping](Mapping) contracts are implemented by attributes defined elsewhere. They describe how abstractions
-(interfaces and abstract classes) are mapped to their implementations, for any engine that handles mappings:
+These [Mapping](Mapping) contracts describe how abstractions (interfaces and abstract classes) are mapped to their
+implementations, for any engine that handles mappings:
 
 - An [`ISingleMappingAttribute`](Mapping/ISingleMappingAttribute.cs) makes the decorated abstraction a single one:
-  at most one implementation is mapped to it.
+  at most one implementation is mapped to it. [`[IsSingle]`](Mapping/IsSingleAttribute.cs) implements it (it has no
+  effect on the Automatic DI engine).
 - An [`IMultipleMappingAttribute`](Mapping/IMultipleMappingAttribute.cs) makes it a multiple one: all its
   implementations are mapped to it. [`[IsMultiple]`](AutoDI/IsMultipleAttribute.cs) implements it.
 - An [`INotMappedAttribute`](Mapping/INotMappedAttribute.cs) revokes the mappings of the decorated type only:
