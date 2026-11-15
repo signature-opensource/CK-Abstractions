@@ -110,7 +110,8 @@ public interface INamedFeatureAttribute
   Exactly one of them is not null.
 - A name is borne by one package, unless all the packages that bear it are `IsMultiple`: the name is then a set of
   packages (the sides of a feature), that agree on their optionality.
-- Only a package (a concrete `IResourceGroup`) can have a feature name, and at most one.
+- Only a package (a concrete `IResourceGroup`) can have a feature name, and at most one: the closest one in its base
+  classes (an abstract class can name its specializations).
 
 ## Topology declared by another attribute
 

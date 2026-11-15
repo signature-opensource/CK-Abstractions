@@ -12,7 +12,7 @@ namespace CK.Core;
 /// Rules that the engine checks:
 /// <list type="bullet">
 ///     <item>A decorated type must be a package: not an abstraction and an <see cref="IResourceGroup"/>.</item>
-///     <item>A package has at most one feature name.</item>
+///     <item>A package has at most one feature name: the closest one in its base classes (an abstract class can name its specializations).</item>
 ///     <item>
 ///     Exactly one of <see cref="Name"/> and <see cref="TypeNameSuffix"/> is not null, and a type name must end with
 ///     the <see cref="TypeNameSuffix"/> (that is not the whole type name).
