@@ -41,7 +41,7 @@ public abstract class EngineAttribute : Attribute, IEngineAttribute
     /// </summary>
     /// <param name="actualAttributeTypeAssemblyQualifiedName">
     /// Assembly Qualified Name of the associated engine implementation that must be a specialized
-    /// CK.Engine.TypeCollector.EngineAttributeImpl class (in CK.Engine.TypeCollector assembly).
+    /// CK.TypeCache.EngineAttributeImpl class (in CK.TypeCache assembly).
     /// <para>
     /// Example: "CK.TypeScript.Engine.TypeScriptPackageImpl, CK.TypeScript.Engine".
     /// </para>

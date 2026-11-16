@@ -20,7 +20,7 @@ public abstract class ChildEngineAttribute<T> : EngineAttribute, IChildEngineAtt
     /// </summary>
     /// <param name="actualAttributeTypeAssemblyQualifiedName">
     /// Assembly Qualified Name of the associated engine implementation that must be a specialized
-    /// CK.Engine.TypeCollector.EngineAttributeImpl class.
+    /// CK.TypeCache.EngineAttributeImpl class.
     /// <para>
     /// Example: "Namespace.TypeNameAttributeImpl, SomeEngineAssembly".
     /// </para>

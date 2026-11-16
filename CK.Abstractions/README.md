@@ -112,7 +112,7 @@ namespace will be considered as a valid marker"*. A look-alike that declares a m
 classes**, not attributes you apply. You specialize them, and the base constructor takes one string:
 
 > Assembly Qualified Name of the associated engine implementation that must be a specialized
-> `CK.Engine.TypeCollector.EngineAttributeImpl` class
+> `CK.TypeCache.EngineAttributeImpl` class
 
 for example `"CK.TypeScript.Engine.TypeScriptPackageImpl, CK.TypeScript.Engine"`. So the attribute you
 write lives in deployed code and *"can declare any properties that configures the behavior of its Engine
