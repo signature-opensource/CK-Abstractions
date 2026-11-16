@@ -79,7 +79,8 @@ left unresolved.
 Same two forms as above - `params string[]` and six generic arities.
 
 A separate contract, [`IOptionalResourceGroupAttribute`](IOptionalResourceGroupAttribute.cs), covers the
-other meaning of optional - a whole *type* that is opt-in. **Nothing in this package implements it**: it
+other meaning of optional - a whole *type* that is opt-in ([`IConfigurableTypeAttribute`](#configurable-types) extends
+it). **Nothing in this package implements it**: it
 is here for attributes defined elsewhere, and its comment states the rules an implementer must honour:
 
 - *"Such opt-in groups or packages must be explicitly registered as non-optional or required by another
@@ -89,29 +90,43 @@ is here for attributes defined elsewhere, and its comment states the rules an im
 - *"There is no such thing as an 'optional abstraction', an abstraction is always available unless it has
   no registered 'implementation'."*
 
-## Feature names
+## Configurable types
 
-[`INamedFeatureAttribute`](INamedFeatureAttribute.cs) gives a package a feature name: the name that activates or
-deactivates it in a type set (the roots and the exclusions of the set, the "AllowFeatures" and "DisallowFeatures" of a
-party). **It is not an alias of the type:** a feature name is never a reference (no relation names it), the engine only
-resolves it while it computes a type set. **Nothing in this package implements it.**
+[`IConfigurableTypeAttribute`](IConfigurableTypeAttribute.cs) makes a package a configurable type: the configuration
+names it (its `Name` is the key of its section), configures it and switches it (its `Activation`). **Nothing in this
+package implements it.**
 
 ```csharp
-public interface INamedFeatureAttribute
+public interface IConfigurableTypeAttribute : IOptionalResourceGroupAttribute
 {
-    string? Name { get; }
-    string? TypeNameSuffix => null;
-    bool IsMultiple => false;
+    string Name { get; }
+    TypeActivation Activation { get; }
+    bool IOptionalResourceGroupAttribute.IsOptional => Activation == TypeActivation.Optional;
 }
+
+public enum TypeActivation { None = 0, Optional, ByDefault, Required }
 ```
 
-- `Name` is explicit; `TypeNameSuffix` derives the name from the decorated type (an attribute inherited from a base
-  class names its specializations: "FeatureDriver" makes the `HttpEndpointFeatureDriver` the "HttpEndpoint" feature).
-  Exactly one of them is not null.
-- A name is borne by one package, unless all the packages that bear it are `IsMultiple`: the name is then a set of
-  packages (the sides of a feature), that agree on their optionality.
-- Only a package (a concrete `IResourceGroup`) can have a feature name, and at most one: the closest one in its base
-  classes (an abstract class can name its specializations).
+- **The types drive, the names configure.** The members of a set are given by types; the name is an alias of its type
+  **in the configuration only**, for readability: it is never a reference (no relation names it, no export or import
+  uses it). A name is valid only when its type is a member of the configured set: it never brings its type in.
+- **The name is explicit**, read on the decorated type only (not on its base classes): it is a contract of the
+  configuration that must not depend on a type name. It is unique in its scope (a party, a client, the section of an
+  owner...): the engine of the model that defines the configurable types defines the scopes and checks them.
+- Only a package (a concrete `IResourceGroup`) is a configurable type, with at most one such attribute.
+
+The `Activation` is explicit (`None` is an error) and answers two questions with one declaration:
+
+| Activation | Membership of a set | Run time, no key | `"X": {}` | `"X": true` | `"X": false` |
+|---|---|---|---|---|---|
+| `Optional` | only when rooted (declared by the set, or required by a member) | off | configures, on | on | warning (redundant) |
+| `ByDefault` | by default | on | configures | warning (redundant) | off |
+| `Required` | by default | on | configures | warning (redundant) | **error** |
+
+The membership is the optionality of the package: it lets an assembly offer more than what a party eventually uses,
+and keeps the unused code out. `IConfigurableTypeAttribute` **is** an `IOptionalResourceGroupAttribute` whose
+`IsOptional` is its activation (`Optional`): the engines read the optionality of every package, configurable or not, by
+one rule (an implementation must not override `IsOptional`).
 
 ## Topology declared by another attribute
 

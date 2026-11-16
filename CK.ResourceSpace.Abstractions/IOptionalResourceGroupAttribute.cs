@@ -12,6 +12,10 @@ namespace CK.Core;
 /// Engines that handle such optional types should ensure that this is applied to "implementation": there is no
 /// such thing as an "optional abstraction", an abstraction is always available unless it has no registered "implementation".
 /// </para>
+/// <para>
+/// The <see cref="IConfigurableTypeAttribute"/> is one: the optionality of a configurable type is its
+/// <see cref="IConfigurableTypeAttribute.Activation"/>.
+/// </para>
 /// </summary>
 public interface IOptionalResourceGroupAttribute
 {
