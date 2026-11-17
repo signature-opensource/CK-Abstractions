@@ -8,33 +8,33 @@ the conventional `AssemblyInfo.cs` file.
 The [[SkippedAssembly](SkippedAssemblyAttribute.cs)] allows an assembly to be totally ignored.
 By default "Microsoft.*" and "System.*" assemblies are skipped. This is primarily an optimization:
 only assemblies that are not skipped are analyzed, first for their assembly level attributes, and
-when they are a PFeature, their types are collected.
+when they are a Model, their types are collected.
 
-## PFeature, PFeatureDefiner Engine and RequiredEngine
-A CKomposable assembly is either a PFeature or an Engine.
-- A PFeature contains the regular code and will be deployed.
+## Model, ModelDefiner, Engine and RequiredEngine
+A CKomposable assembly is either a Model or an Engine.
+- A Model contains the regular code and will be deployed.
 - An Engine contains the code that can generate code, documentation, etc. It is not deployed.
 
-An assembly decorated with a [[IsPFeature](IsPFeatureAttribute.cs)] adds the Types it contains
+An assembly decorated with a [[IsModel](IsModelAttribute.cs)] adds the Types it contains
 to the CKomposable engine and can also declare one or more required engines thanks
 to [[RequiredEngine](RequiredEngineAttribute.cs)].
 
 Engine assemblies must be decorated with [[IsEngine](IsEngineAttribute.cs)]. An engine can also
 requires other engines - this can be used to _hide_ the dependency to an engine.
 
-The [[IsPFeatureDefiner](IsPFeatureDefinerAttribute.cs)] is used by the most abstract assemblies:
+The [[IsModelDefiner](IsModelDefinerAttribute.cs)] is used by the most abstract assemblies:
 they define attributes and abstract types (typically interfaces) but no directly usable, final, types.
 
-The [[IsPFeature](IsPFeatureAttribute.cs)] is often not required: an assembly that recursively depends
-on a PFeature or PFeatureDefiner is a PFeature assembly. Similarly, an assembly that recursively
+The [[IsModel](IsModelAttribute.cs)] is often not required: an assembly that recursively depends
+on a Model or ModelDefiner is a Model assembly. Similarly, an assembly that recursively
 depends on an Engine is automatically an Engine assembly.
 
-## RemovePFeature, RemoveType and AddType
-The [[RemovePFeature](RemovePFeatureAttribute.cs)] attribute can "hide" a dependent PFeature: its types
-are no more included by default. Instead of removing all the types of a PFeature, [[RemoveType](RemoveTypeAttribute.cs)]
+## RemoveModel, RemoveType and AddType
+The [[RemoveModel](RemoveModelAttribute.cs)] attribute can "hide" a dependent Model: its types
+are no more included by default. Instead of removing all the types of a Model, [[RemoveType](RemoveTypeAttribute.cs)]
 can be used to remove one or more specific types.
 
-Types that have been removed by a referencing assembly (with `[RemoveType]` or `[RemovePFeature]`) can be added back
+Types that have been removed by a referencing assembly (with `[RemoveType]` or `[RemoveModel]`) can be added back
 by a higher level referencing assembly thanks to [[AddType](AddTypeAttribute.cs)]. The `[AddType]` attribute
 can also be used to configure a type for the Automatic Dependency Injection by specifying a
 service [`kind`](../Core/AutoDI/ConfigurableAutoServiceKind.cs) for a type.

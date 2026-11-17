@@ -82,12 +82,12 @@ The full contract set is documented in [Core/AutoDI](Core/AutoDI/README.md).
 |--------|-----------|------------|
 | [Core](Core/README.md) | types, in the `CK.Core` namespace | `[CKTypeDefiner]`, `[CKTypeSuperDefiner]`, `[ExcludedCKType]`, `[AlsoRegisterType<T>]`, the mapping contracts (`ISingleMappingAttribute`, `IMultipleMappingAttribute`, `INotMappedAttribute`) |
 | [Core/AutoDI](Core/AutoDI/README.md) | the DI contracts and their attributes | `[IsMultiple]`, `[ReplaceAutoService]`, `[ScopedService]`, `[SingletonService]`, … |
-| [Setup](Setup/README.md) | **assemblies**, in the `CK.Setup` namespace, from `AssemblyInfo.cs` | `[IsPFeature]`, `[IsPFeatureDefiner]`, `[IsEngine]`, `[RequiredEngine]`, `[SkippedAssembly]`, `[RemovePFeature]`, `[RemoveType]`, `[AddType]`, `[PreserveAssemblyReference]` |
+| [Setup](Setup/README.md) | **assemblies**, in the `CK.Setup` namespace, from `AssemblyInfo.cs` | `[IsModel]`, `[IsModelDefiner]`, `[IsEngine]`, `[RequiredEngine]`, `[SkippedAssembly]`, `[RemoveModel]`, `[RemoveType]`, `[AddType]`, `[PreserveAssemblyReference]` |
 
 The distinction matters: the `Setup` attributes are declared in `AssemblyInfo.cs` rather than on a type.
 Four of them decide what the engine looks at, and two of those work by contagion: `[SkippedAssembly]`
-excludes, `[IsPFeature]` includes, `[IsPFeatureDefiner]` makes *"any assemblies that references it"* a
-PFeature, and `[IsEngine]` marks an engine - *"Being an Engine is transitive"*. The rest do narrower
+excludes, `[IsModel]` includes, `[IsModelDefiner]` makes *"any assemblies that references it"* a
+Model, and `[IsEngine]` marks an engine - *"Being an Engine is transitive"*. The rest do narrower
 jobs: `[RequiredEngine]` names a required engine assembly and a NuGet version range,
 `[PreserveAssemblyReference]` keeps a reference from being trimmed away, and `[AddType]` / `[RemoveType]`
 act on individual types. Four are `AllowMultiple = true`, so "once per assembly" holds for the shape of

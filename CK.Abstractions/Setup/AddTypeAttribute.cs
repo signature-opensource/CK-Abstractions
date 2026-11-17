@@ -7,7 +7,7 @@ namespace CK.Setup;
 /// This attribute can:
 /// <list type="number">
 ///     <item>
-///         Explicitly consider one or more types from a referenced assembly that could have been hidden by <see cref="RemovePFeatureAttribute"/>
+///         Explicitly consider one or more types from a referenced assembly that could have been hidden by <see cref="RemoveModelAttribute"/>
 ///         or by a <see cref="RemoveTypeAttribute"/> in referenced assemblies.
 ///     </item>
 ///     <item>
@@ -16,7 +16,7 @@ namespace CK.Setup;
 ///     </item>
 /// </list>
 /// The types to register must be public (<see cref="Type.IsVisible"/>) otherwise it is a setup error.
-/// They can belong to any assembly (removed or not), including regular (non PFeature) assembly.
+/// They can belong to any assembly (removed or not), including regular (non Model) assembly.
 /// </summary>
 [AttributeUsage( AttributeTargets.Assembly, AllowMultiple = true )]
 public sealed class AddTypeAttribute : Attribute

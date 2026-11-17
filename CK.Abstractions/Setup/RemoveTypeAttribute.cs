@@ -5,7 +5,7 @@ namespace CK.Setup;
 /// <summary>
 /// Removes one or more types of automatic registration.
 /// <para>
-/// Removing a type, just like removing an assembly with <see cref="RemovePFeatureAttribute"/>, is
+/// Removing a type, just like removing an assembly with <see cref="RemoveModelAttribute"/>, is
 /// "weak", it impacts the initial type set that will be considered. Other assemblies, engine configuration
 /// or aspects can always register the types back.
 /// </para>

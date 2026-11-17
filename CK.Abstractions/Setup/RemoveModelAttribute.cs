@@ -7,7 +7,7 @@ namespace CK.Setup;
 /// <para>
 /// This is a "weak" exclusion used to compute a set of initial types to register: types from this
 /// assembly can perfectly be registered explicitly or through other types and the removed assembly is
-/// still a PFeature (that can be included back by any upper level assembly).
+/// still a Model (that can be included back by any upper level assembly).
 /// </para>
 /// <para>
 /// This allows to hide all the types of a referenced assembly by default and to opt-in exposing some of
@@ -15,17 +15,17 @@ namespace CK.Setup;
 /// </para>
 /// </summary>
 [AttributeUsage( AttributeTargets.Assembly, AllowMultiple = true )]
-public sealed class RemovePFeatureAttribute : Attribute
+public sealed class RemoveModelAttribute : Attribute
 {
     /// <summary>
-    /// Initializes a new <see cref="RemovePFeatureAttribute"/>.
+    /// Initializes a new <see cref="RemoveModelAttribute"/>.
     /// The assembly name is checked at setup and if it is not found in this assembly's references closure
     /// (it may already been removed by referenced assemblies), only a warning is emitted. This enables
     /// to guaranty the this assembly will remove <paramref name="assemblyName"/> regardless of any
     /// changes in its referenced assemblies.
     /// </summary>
     /// <param name="assemblyName">The simple assembly name or the string "this" to exclude this assembly.</param>
-    public RemovePFeatureAttribute( string assemblyName )
+    public RemoveModelAttribute( string assemblyName )
     {
         AssemblyName = assemblyName;
     }
