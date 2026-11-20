@@ -20,6 +20,11 @@ namespace CK.Core;
 /// A name is a configuration path: segments separated by ':' made of letters, digits, '_' and '-' (an environment variable
 /// can name it: "Secrets__Duende__ClientSecret").
 /// </para>
+/// <para>
+/// An optional handle (<see cref="OptionalHandleKey"/>, <c>{ "$SECRET?": "Enlist:Worker2" }</c>) names a secret that may be
+/// missing: its path is then absent (as if nothing were configured there), the feature behaves as when it is not
+/// configured (a one-time enlistment ticket, an optional activation).
+/// </para>
 /// </summary>
 public static class ConfigurationSecret
 {
@@ -27,6 +32,11 @@ public static class ConfigurationSecret
     /// The key of a handle: <c>{ "$SECRET": "&lt;Name&gt;" }</c>.
     /// </summary>
     public const string HandleKey = "$SECRET";
+
+    /// <summary>
+    /// The key of an optional handle: <c>{ "$SECRET?": "&lt;Name&gt;" }</c>. A missing secret leaves its path absent.
+    /// </summary>
+    public const string OptionalHandleKey = "$SECRET?";
 
     /// <summary>
     /// The configuration section that holds the values of the secrets, by name.
@@ -59,20 +69,44 @@ public static class ConfigurationSecret
     }
 
     /// <summary>
-    /// Gets whether a path of the flattened configuration is a handle (<c>"&lt;path&gt;:$SECRET"</c>).
+    /// Gets whether a configuration key is the key of a handle (<see cref="HandleKey"/> or <see cref="OptionalHandleKey"/>).
+    /// </summary>
+    /// <param name="key">The key (the last segment of a path).</param>
+    /// <param name="isOptional">True for an optional handle.</param>
+    /// <returns>True when the key is the key of a handle.</returns>
+    public static bool IsHandleKey( string key, out bool isOptional )
+    {
+        isOptional = key.Equals( OptionalHandleKey, StringComparison.OrdinalIgnoreCase );
+        return isOptional || key.Equals( HandleKey, StringComparison.OrdinalIgnoreCase );
+    }
+
+    /// <summary>
+    /// Gets whether a path of the flattened configuration is a handle (<c>"&lt;path&gt;:$SECRET"</c> or
+    /// <c>"&lt;path&gt;:$SECRET?"</c>).
     /// </summary>
     /// <param name="path">The configuration path.</param>
     /// <param name="valuePath">The path of the value that the handle replaces.</param>
     /// <returns>True when the path is a handle.</returns>
-    public static bool IsHandlePath( string path, [NotNullWhen( true )] out string? valuePath )
+    public static bool IsHandlePath( string path, [NotNullWhen( true )] out string? valuePath ) => IsHandlePath( path, out valuePath, out _ );
+
+    /// <summary>
+    /// Gets whether a path of the flattened configuration is a handle (<c>"&lt;path&gt;:$SECRET"</c> or
+    /// <c>"&lt;path&gt;:$SECRET?"</c>).
+    /// </summary>
+    /// <param name="path">The configuration path.</param>
+    /// <param name="valuePath">The path of the value that the handle replaces.</param>
+    /// <param name="isOptional">True for an optional handle.</param>
+    /// <returns>True when the path is a handle.</returns>
+    public static bool IsHandlePath( string path, [NotNullWhen( true )] out string? valuePath, out bool isOptional )
     {
-        const string suffix = ":" + HandleKey;
-        if( path.Length > suffix.Length && path.EndsWith( suffix, StringComparison.OrdinalIgnoreCase ) )
+        var i = path.LastIndexOf( ':' );
+        if( i > 0 && IsHandleKey( path[(i + 1)..], out isOptional ) )
         {
-            valuePath = path[..^suffix.Length];
+            valuePath = path[..i];
             return true;
         }
         valuePath = null;
+        isOptional = false;
         return false;
     }
 
