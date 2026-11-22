@@ -13,21 +13,27 @@ namespace CK.Core;
 /// the configuration paths (<c>*</c> for any member, <c>[*]</c> for any item):
 /// <c>[ConfigurationPerDeployment( "Party:Urls" )]</c>.
 /// </para>
+/// <para>
+/// On an assembly, it is declared by the engine of the structure of the parties (the one that declares their anchors,
+/// see the App builder contributors): the path is the kind of the parties, then the path in the party itself, not in
+/// the section of a type: <c>[assembly: ConfigurationPerDeployment( "Remote:Address" )]</c>. The App builder reads it on
+/// the assemblies of its contributors.
+/// </para>
 /// </summary>
-[AttributeUsage( AttributeTargets.Class, AllowMultiple = true, Inherited = false )]
+[AttributeUsage( AttributeTargets.Class | AttributeTargets.Assembly, AllowMultiple = true, Inherited = false )]
 public sealed class ConfigurationPerDeploymentAttribute : Attribute
 {
     /// <summary>
     /// Initializes a new "per deployment" declaration.
     /// </summary>
-    /// <param name="path">The kind of the parties, then the path in the section of the type (':' separated).</param>
+    /// <param name="path">The kind of the parties, then the path in the section of the type, or in the party for an assembly (':' separated).</param>
     public ConfigurationPerDeploymentAttribute( string path )
     {
         Path = path;
     }
 
     /// <summary>
-    /// Gets the kind of the parties, then the path in the section of the type (':' separated).
+    /// Gets the kind of the parties, then the path in the section of the type, or in the party for an assembly (':' separated).
     /// </summary>
     public string Path { get; }
 }
