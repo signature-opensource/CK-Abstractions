@@ -92,41 +92,9 @@ is here for attributes defined elsewhere, and its comment states the rules an im
 
 ## Configurable types
 
-[`IConfigurableTypeAttribute`](IConfigurableTypeAttribute.cs) makes a package a configurable type: the configuration
-names it (its `Name` is the key of its section), configures it and switches it (its `Activation`). **Nothing in this
-package implements it.**
-
-```csharp
-public interface IConfigurableTypeAttribute : IOptionalResourceGroupAttribute
-{
-    string Name { get; }
-    TypeActivation Activation { get; }
-    bool IOptionalResourceGroupAttribute.IsOptional => Activation == TypeActivation.Optional;
-}
-
-public enum TypeActivation { None = 0, Optional, ByDefault, Required }
-```
-
-- **The types drive, the names configure.** The members of a set are given by types; the name is an alias of its type
-  **in the configuration only**, for readability: it is never a reference (no relation names it, no export or import
-  uses it). A name is valid only when its type is a member of the configured set: it never brings its type in.
-- **The name is explicit**, read on the decorated type only (not on its base classes): it is a contract of the
-  configuration that must not depend on a type name. It is unique in its scope (a party, a client, the section of an
-  owner...): the engine of the model that defines the configurable types defines the scopes and checks them.
-- Only a package (a concrete `IResourceGroup`) is a configurable type, with at most one such attribute.
-
-The `Activation` is explicit (`None` is an error) and answers two questions with one declaration:
-
-| Activation | Membership of a set | Run time, no key | `"X": {}` | `"X": true` | `"X": false` |
-|---|---|---|---|---|---|
-| `Optional` | only when rooted (declared by the set, or required by a member) | off | configures, on | on | warning (redundant) |
-| `ByDefault` | by default | on | configures | warning (redundant) | off |
-| `Required` | by default | on | configures | warning (redundant) | **error** |
-
-The membership is the optionality of the package: it lets an assembly offer more than what a party eventually uses,
-and keeps the unused code out. `IConfigurableTypeAttribute` **is** an `IOptionalResourceGroupAttribute` whose
-`IsOptional` is its activation (`Optional`): the engines read the optionality of every package, configurable or not, by
-one rule (an implementation must not override `IsOptional`).
+A configurable type is a package whose attribute is an `IOptionalResourceGroupAttribute`: its optionality is its
+activation. The configurable types, their options and the configuration attributes are contracts of
+[CK.Abstractions](../CK.Abstractions/README.md#configurable-types), which references this package.
 
 ## Topology declared by another attribute
 

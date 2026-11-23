@@ -13,8 +13,8 @@ namespace CK.Core;
 /// such thing as an "optional abstraction", an abstraction is always available unless it has no registered "implementation".
 /// </para>
 /// <para>
-/// The <see cref="IConfigurableTypeAttribute"/> is one: the optionality of a configurable type is its
-/// <see cref="IConfigurableTypeAttribute.Activation"/>.
+/// The configurable type attribute (<c>IConfigurableTypeAttribute</c> of CK.Abstractions, that references this package)
+/// is one: the optionality of a configurable type is its activation.
 /// </para>
 /// </summary>
 public interface IOptionalResourceGroupAttribute
