@@ -13,6 +13,6 @@ namespace CK.Core;
 /// </para>
 /// </summary>
 /// <typeparam name="TOwner">The owner type (or a base of it) to which this option applies.</typeparam>
-public interface IConfigurableOption<TOwner> : IResourceGroup
+public interface IConfigurableOption<in TOwner> : IResourceGroup
 {
 }
