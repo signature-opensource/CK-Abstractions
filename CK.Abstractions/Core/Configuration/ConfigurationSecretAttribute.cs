@@ -12,8 +12,12 @@ namespace CK.Core;
 /// the configuration paths (<c>*</c> for any member, <c>[*]</c> for any item):
 /// <c>[ConfigurationSecret( "Party:Oidc:*:ClientSecret" )]</c>.
 /// </para>
+/// <para>
+/// On a property of a configuration model (see <see cref="ConfigurationAttribute{TModel}"/>), it has no path: the property
+/// is a secret, its path is derived from the model.
+/// </para>
 /// </summary>
-[AttributeUsage( AttributeTargets.Class, AllowMultiple = true, Inherited = false )]
+[AttributeUsage( AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = true, Inherited = false )]
 public sealed class ConfigurationSecretAttribute : Attribute
 {
     /// <summary>
@@ -26,7 +30,16 @@ public sealed class ConfigurationSecretAttribute : Attribute
     }
 
     /// <summary>
-    /// Gets the kind of the parties, then the path in the section of the type (':' separated).
+    /// Initializes a new secret declaration on a property of a configuration model.
+    /// </summary>
+    public ConfigurationSecretAttribute()
+    {
+        Path = string.Empty;
+    }
+
+    /// <summary>
+    /// Gets the kind of the parties, then the path in the section of the type (':' separated). Empty on a property of a
+    /// configuration model.
     /// </summary>
     public string Path { get; }
 }

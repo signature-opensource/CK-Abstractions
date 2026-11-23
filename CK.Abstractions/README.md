@@ -153,6 +153,17 @@ type attribute (its name is its key in the section of its owner, its activation 
 `OwnerKind` is the kind of owner of its level, and the embedded resource attribute that the ordering of the options
 requires. Each level specializes both, and its engine orders, selects and creates the options of each owner.
 
+### The configuration models
+
+A configurable type declares the model of its section with [`[Configuration<TModel>]`](Core/Configuration/ConfigurationAttribute.cs):
+a `partial` class whose properties are the keys of the section. Its owner receives the model, read and validated, instead
+of reading its configuration, and the tools (the App builder, the configurator) know the section from the model's
+description: both are generated at compile time by CK.ConfigurationModel. A property is a nested model (a list, a
+dictionary of named models), a foreign options type whose properties are its shape, or an opaque `IConfiguration`
+described by the JSON Schema that [`[ConfigurationSchema]`](Core/Configuration/ConfigurationSchemaAttribute.cs) names.
+`[ConfigurationLevel]`, `[ConfigurationSecret]` and `[ConfigurationPerDeployment]` decorate the properties of a model
+(without a path: it is derived from the model).
+
 ### The configuration attributes
 
 They describe the configuration of a configurable type, for the builder and the tools (in `Core/Configuration`):

@@ -19,8 +19,12 @@ namespace CK.Core;
 /// the section of a type: <c>[assembly: ConfigurationPerDeployment( "Remote:Address" )]</c>. The App builder reads it on
 /// the assemblies of its contributors.
 /// </para>
+/// <para>
+/// On a property of a configuration model (see <see cref="ConfigurationAttribute{TModel}"/>), it has no path: the property
+/// is written by each deployment, its path is derived from the model.
+/// </para>
 /// </summary>
-[AttributeUsage( AttributeTargets.Class | AttributeTargets.Assembly, AllowMultiple = true, Inherited = false )]
+[AttributeUsage( AttributeTargets.Class | AttributeTargets.Assembly | AttributeTargets.Property, AllowMultiple = true, Inherited = false )]
 public sealed class ConfigurationPerDeploymentAttribute : Attribute
 {
     /// <summary>
@@ -33,7 +37,16 @@ public sealed class ConfigurationPerDeploymentAttribute : Attribute
     }
 
     /// <summary>
+    /// Initializes a new "per deployment" declaration on a property of a configuration model.
+    /// </summary>
+    public ConfigurationPerDeploymentAttribute()
+    {
+        Path = string.Empty;
+    }
+
+    /// <summary>
     /// Gets the kind of the parties, then the path in the section of the type, or in the party for an assembly (':' separated).
+    /// Empty on a property of a configuration model.
     /// </summary>
     public string Path { get; }
 }
