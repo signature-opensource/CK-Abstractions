@@ -13,5 +13,6 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="CK.Abstractions/CK.Abstractions.csproj" />
+  <Project Path="CK.AppBuilder.Abstractions/CK.AppBuilder.Abstractions.csproj" />
   <Project Path="CK.ResourceSpace.Abstractions/CK.ResourceSpace.Abstractions.csproj" />
 </Solution>
