@@ -3,7 +3,7 @@ using System;
 namespace CK.Core;
 
 /// <summary>
-/// The value of a secret of a configuration model that is read before the handles are resolved (a Builder aspect: the
+/// The value of a secret of a configuration model that is read before the handles are resolved (an AppContext aspect: the
 /// build reads the configuration files): either the value itself, or the name of the secret of its handle
 /// (<c>{ "$SECRET": "&lt;Name&gt;" }</c>, see <see cref="ConfigurationSecret"/>). The consumer resolves a handle when it
 /// needs the value, or projects it as a handle. At run time, the handles are resolved: it is a <see cref="Value"/>.

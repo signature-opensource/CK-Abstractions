@@ -4,8 +4,8 @@ using System;
 namespace CK.Setup;
 
 /// <summary>
-/// Declares an App aspect: an <see cref="IAppAspect"/> package that the <c>"Aspects"</c> of an App of the "ckonf.json"
-/// of a builder (<c>"Apps:X:Aspects"</c>) names (<see cref="Name"/>), configures (its section) and switches
+/// Declares an App aspect: an <see cref="IAppAspect"/> package that the <c>"Aspects"</c> of an App of an AppContext
+/// (<c>"App:Aspects"</c> or <c>"Apps:[*]:Aspects"</c>) names (<see cref="Name"/>), configures (its section) and switches
 /// (<see cref="Activation"/>). An App aspect is present in an App when it is a member of its type set
 /// (<see cref="TypeActivation.ByDefault"/> and <see cref="TypeActivation.Required"/>) or when its key is declared
 /// (<see cref="TypeActivation.Optional"/>), unless its key is <c>false</c>.

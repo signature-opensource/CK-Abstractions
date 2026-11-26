@@ -5,7 +5,7 @@ namespace CK.Core;
 /// (declared by its <see cref="IConfigurableOptionAttribute"/>), and that applies to <typeparamref name="TOwner"/> and to
 /// the owners derived from it.
 /// <para>
-/// The options exist at every level of the configuration: the Builder aspects, the App aspects, the party features and
+/// The options exist at every level of the configuration: the AppContext aspects, the App aspects, the party features and
 /// the client features have options. Each level defines its option interface (a specialization of this one) and its
 /// attribute (a specialization of <see cref="IConfigurableOptionAttribute"/>), and the engine of that level orders the
 /// options of each owner (the topology attributes between options order them; a non optional relation also means

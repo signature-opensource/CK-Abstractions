@@ -12,13 +12,13 @@ level attach to):
 
 | Level | Configurable type | Option attribute | Owner kind | Built by |
 |---|---|---|---|---|
-| Builder aspects | [`[AppBuilderAspect]`](AppAspects/AppBuilderAspectAttribute.cs) | [`[AppBuilderAspectOption]`](AppAspects/AppBuilderAspectOptionAttribute.cs) | [`IAppBuilderAspect`](AppAspects/IAppBuilderAspect.cs) | the App builder, once for all its Apps |
-| App aspects | [`[AppAspect]`](AppAspects/AppAspectAttribute.cs) | [`[AppAspectOption]`](AppAspects/AppAspectOptionAttribute.cs) | [`IAppAspect`](AppAspects/IAppAspect.cs) | the App builder, once per App |
+| AppContext aspects | [`[AppContextAspect]`](AppAspects/AppContextAspectAttribute.cs) | [`[AppContextAspectOption]`](AppAspects/AppContextAspectOptionAttribute.cs) | [`IAppContextAspect`](AppAspects/IAppContextAspect.cs) | the Builder, once for all the Apps of its AppContext |
+| App aspects | [`[AppAspect]`](AppAspects/AppAspectAttribute.cs) | [`[AppAspectOption]`](AppAspects/AppAspectOptionAttribute.cs) | [`IAppAspect`](AppAspects/IAppAspect.cs) | the Builder, once per App |
 | Party features | [`[PartyFeature]`](Party/PartyFeatureAttribute.cs) | [`[PartyFeatureOption]`](Party/PartyFeatureOptionAttribute.cs) | [`IApplicationIdentityFeatureDriver`](Party/IApplicationIdentityFeatureDriver.cs) | the AppIdentity engine, per party |
 | Client features | [`[PartyClientFeature]`](PartyClient/PartyClientFeatureAttribute.cs) | [`[PartyClientFeatureOption]`](PartyClient/PartyClientFeatureOptionAttribute.cs) | [`IPartyClientFeature`](PartyClient/IPartyClientFeature.cs) | the AppIdentity engine, per client of a party |
 
 The owner kinds of the two aspect levels are markers: what an aspect does (its `Apply`) is engine side, in
-`IAppAspectApply` and `IAppBuilderAspectApply` (CK.Engine.Configuration), because it works on the App builder model. The
+`IAppAspectApply` and `IAppContextAspectApply` (CK.Engine.Configuration), because it works on the App builder model. The
 party features and the client features are both party components ([`IPartyComponent`](Party/IPartyComponent.cs)): their
 options are [`IPartyComponentOption<TOwner>`](Party/IPartyComponentOption.cs). A client also states facts about itself
 with [`[PartyClientFact]`](PartyClient/PartyClientFactAttribute.cs) (a key and an optional value).
@@ -63,7 +63,7 @@ one rule (an implementation must not override `IsOptional`).
 
 ### The options
 
-The four levels of the configuration (the Builder aspects, the App aspects, the party features and the client
+The four levels of the configuration (the AppContext aspects, the App aspects, the party features and the client
 features) have options: an [`IConfigurableOption<TOwner>`](Configuration/IConfigurableOption.cs) is a package
 configured in the section of its owner, by its name, that applies to `TOwner` and to the owners derived from it. Its
 attribute is an [`IConfigurableOptionAttribute`](Configuration/IConfigurableOptionAttribute.cs): a configurable

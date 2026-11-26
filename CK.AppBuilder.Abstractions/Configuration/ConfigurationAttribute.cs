@@ -3,7 +3,7 @@ using System;
 namespace CK.Core;
 
 /// <summary>
-/// Declares the configuration model of a configurable type (a Builder or App aspect, a party feature, a client feature,
+/// Declares the configuration model of a configurable type (an AppContext or App aspect, a party feature, a client feature,
 /// an option: see <see cref="IConfigurableTypeAttribute"/>): a class whose properties are the keys of the section of the
 /// type. The owner receives its model, read and validated, instead of reading its configuration: the model's
 /// description is what the tools (the App builder, the configurator) know of the section.

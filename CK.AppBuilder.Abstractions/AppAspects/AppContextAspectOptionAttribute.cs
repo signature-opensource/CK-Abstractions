@@ -5,19 +5,19 @@ using System.Runtime.CompilerServices;
 namespace CK.Setup;
 
 /// <summary>
-/// Decorates an option of a Builder aspect: an <see cref="IAppBuilderAspectOption{TAspect}"/>. Its name is its key in the
-/// section of its aspect, in the root <c>"Aspects"</c> of the builder's "ckonf.json".
+/// Decorates an option of an AppContext aspect: an <see cref="IAppContextAspectOption{TAspect}"/>. Its name is its key in the
+/// section of its aspect, in the <c>"Aspects"</c> of the AppContext.
 /// </summary>
 [AttributeUsage( AttributeTargets.Class, AllowMultiple = false, Inherited = false )]
-public sealed class AppBuilderAspectOptionAttribute : Attribute, IConfigurableOptionAttribute
+public sealed class AppContextAspectOptionAttribute : Attribute, IConfigurableOptionAttribute
 {
     /// <summary>
-    /// Initializes a new <see cref="AppBuilderAspectOptionAttribute"/>.
+    /// Initializes a new <see cref="AppContextAspectOptionAttribute"/>.
     /// </summary>
     /// <param name="name">The configuration name of the option: its key in the section of its aspect.</param>
     /// <param name="activation">The activation of the option.</param>
     /// <param name="callerFilePath">Automatically set by the compiler.</param>
-    public AppBuilderAspectOptionAttribute( string name, TypeActivation activation, [CallerFilePath] string? callerFilePath = null )
+    public AppContextAspectOptionAttribute( string name, TypeActivation activation, [CallerFilePath] string? callerFilePath = null )
     {
         Name = name;
         Activation = activation;
@@ -34,7 +34,7 @@ public sealed class AppBuilderAspectOptionAttribute : Attribute, IConfigurableOp
     public string? CallerFilePath { get; }
 
     /// <summary>
-    /// Gets <see cref="IAppBuilderAspect"/>.
+    /// Gets <see cref="IAppContextAspect"/>.
     /// </summary>
-    public Type OwnerKind => typeof( IAppBuilderAspect );
+    public Type OwnerKind => typeof( IAppContextAspect );
 }
